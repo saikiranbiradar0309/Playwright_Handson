@@ -1,12 +1,14 @@
-pipeline{
+pipeline {
     agent any
 
-    stage('Verify Node.js') {
-        steps {
-            sh '''
-                node --version
-                npm --version
-            '''
+    stages {
+        stage('Verify Node.js') {
+            steps {
+                sh '''
+                    node --version
+                    npm --version
+                '''
+            }
         }
     }
 }
