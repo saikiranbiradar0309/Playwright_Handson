@@ -1,0 +1,153 @@
+01. Check playwright version
+    npm playwright -v 
+
+02. To run the test
+
+    a. headless
+       npx playwright test
+    
+    b. headed 
+       npx playwright test --headed
+
+03. To see the generated HTML report
+    npx playwright show-report
+
+
+
+
+-----------------------------------------------
+
+How to create/write test 
+
+01. Click on tests --> Create new file --> <name> EX: homepageTest.spec.js 
+02. write a test to capture a title for https://www.demoblaze.com/
+
+
+//1. import @playwright/test module in our file 
+const {test, expect} = require('@playwright/test')
+
+
+test('Home Page',async ({page})=> {
+    await page.goto('https://www.demoblaze.com/');
+
+    const pageTitle = page.title();
+
+    console.log(pageTitle);
+
+
+    await expect(page).toHaveTitle('STORE');
+
+    await expect(page).toHaveURL('https://www.demoblaze.com/');
+
+
+    await page.close();
+
+})
+
+
+-----------------------------------------------
+
+
+Locating Elements in playwright
+
+1. property
+2. css
+3. xpath 
+
+
+await page.locator('locator').click();
+or 
+await page.click('locator');     Preferable method
+
+
+
+-----------------------------------------------
+
+Locators 
+
+1. page.getByAltText(): to locate an element, usually an Image, by its text alternative
+
+2. page.getByPlaceholder(): To locate an input by placeholder
+
+3. page.getByRole(): To locate by explicit and implicit accessibility attributes
+
+4. page.getByText(): To locate by text content
+
+5. page.getByLabel() to locate a form control by associated label's text.
+
+6. page.getByTitle() to locate an element by its title attribute.
+
+7. page.getByTestId() to locate an element based on its data-testid attribute (other attributes can be configured).
+
+
+-----------------------------------------------
+
+Locate multipple web Elements
+
+1. await page.$$(Locator-matching-multiple-webelements)
+
+2. store in a variable
+   const elements = await page.$$(Locator-matching-multiple-webelements)
+
+   console.log(elements);
+
+
+-----------------------------------------------
+
+Pages 
+
+Page Popup
+
+
+-----------------------------------------------
+
+codegen
+
+npx playwright codegen 
+
+1. Opens empty Browser along with playwright inspector
+
+2. Enter application URL u can open any url (I opened Amazon.in)
+
+3. Click on Mobiles(As you can see playwright inspector is writing the code)
+
+4. Clicked on samsung s26 ultra (As you can see playwright inspector is writing the code)
+
+5. Clicked on Add to cart (As you can see playwright inspector is writing the code)
+
+
+6. Once the recording is over click on record in playwright inspector
+
+7. You can get code and you can literally copy and paste that it will be working code 
+
+8. In playwright inspector if you click on Pick locator and select anything it will 
+   give locator of that element
+
+
+
+IMPORTANT
+9. Instead of copy and pasting the code our command only creates new test file and 
+   recorded automatically in our file 
+
+   npx playwright codegen --help and see waht all u can do 
+
+
+-----------------------------------------------
+
+How To capture screenshots
+
+1. Page screenshot
+
+2. Full page screenshot
+
+3. Element screenshot
+
+4. If i specify 
+   screenshot:'on' 
+   Inside playwright.config.js 
+   Inside use:
+   Then playwright will automatically take screenshot of all the tests
+
+   The screenshot will be automatically stored inside test-results folder 
+
+   And By Default the screenshot will be the part of report also 
